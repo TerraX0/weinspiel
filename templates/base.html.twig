@@ -1,0 +1,122 @@
+{# templates/base.html.twig #}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Wein-Quiz{% endblock %}</title>
+
+      <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('Fotos/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('Fotos/favicon-16x16.png') }}">
+    
+    {% block stylesheets %}
+
+   
+      <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+         <link rel="stylesheet" href="{{ asset('assets/css/wine_buttons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
+     <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
+
+      
+    {% endblock %}
+</head>
+<body>
+    {% block body %}{% endblock %}
+
+      <!-- Modern Header -->
+    {% if show_header is not defined or show_header %}
+    <header class="modern-header">
+        <nav class="nav-container">
+            <div class="logo">
+            <a href="{{ path('/') }}">Alina Köllner</a>
+        </div>
+
+
+              <div class="nav-links">
+   <a href="{{ path('/') }}#kontakt" class="tooltip"  id="kontakt-link">
+    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="black" stroke-linecap="round" stroke-width="2.1" d="m3.5 5.5 7.893 6.036a1 1 0 0 0 1.214 0L20.5 5.5M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"/>
+    </svg>
+    <span class="tooltiptext">Kontakt</span>
+</a>
+
+
+
+  {# Social Media Icons #}
+       {# LinkedIn Icon #}
+{# LinkedIn Icon #}
+<a href="https://linkedin.com/in/alina-koellner"  class="tooltip target="_blank" id="linkedin-link">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.305-.022-2.985-1.812-2.985-1.816 0-2.094 1.416-2.094 2.885v5.669H9.351V9.248h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.284zM5.337 7.433a2.05 2.05 0 01-2.05-2.05c0-1.135.915-2.05 2.05-2.05s2.05.915 2.05 2.05c0 1.134-.914 2.05-2.05 2.05zm1.783 13.019H3.554V9.248h3.566v11.204zM22.225 1H1.775C1.39 1 1 1.39 1 1.775v20.45C1 22.61 1.39 23 1.775 23h20.45c.385 0 .775-.39.775-.775V1.775c0-.385-.39-.775-.775-.775z"/>
+    </svg>
+     <span class="tooltiptext">LinkedIn</span>
+</a>
+
+
+</div>
+    </header>
+       {% endif %}
+
+  <div class="page-container">
+
+        <!-- Main Content -->
+        <main>
+
+{% block content %}
+<section style="
+    width: 100vw;
+    min-height: 90vh;
+    margin-left: calc(-50vw + 50%);
+    padding: 3rem 5%;
+    background: linear-gradient(135deg, #8B0000 0%, #4A0E0E 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+">
+    <div style="max-width: 800px; text-align: center; color: white;">
+        <h1 style="font-size: 3.5rem; font-weight: 700; margin-bottom: 1.5rem; text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);">
+        Wein-Berater
+        </h1>
+        <p style="font-size: 1.8rem; margin-bottom: 3rem; opacity: 0.95; line-height: 1.6;">
+            Lassen Sie sich in 3 einfachen Schritten zu Ihrem perfekten Wein beraten!
+        </p>
+        <a href="{{ path('wine_quiz_question', {step: 1}) }}" class="hero-btn hero-btn-primary" style="
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            border-radius: 8px;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: 0.3s;
+        ">
+            Quiz starten
+        </a>
+    </div>
+</section>
+{% endblock %}
+        </main>
+    </div>
+
+  <!-- Footer -->
+    <footer class="modern-footer">
+        <div class="footer-container">
+            <div class="footer-copyright">
+                © {{ 'now'|date('Y') }} Alina Köllner. Alle Rechte vorbehalten.
+            </div>
+            <ul class="footer-links">
+                <li>  
+                    <a href="https://www.alinakoellner.de/" target="_blank" class="footer-link">Kontakt</a>
+                 </li>
+
+            </ul>
+        </div>
+    </footer>
+
+ {% block javascripts %}
+   {% endblock %}
+
+</body>
+</html>

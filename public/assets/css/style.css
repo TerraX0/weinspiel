@@ -1,0 +1,434 @@
+/* style.css */
+
+/* public/assets/css/style.css */
+
+body {
+    /* Verhindert horizontales Scrollen */
+    overflow-x: hidden;
+    
+    /* Setzt Ränder/Padding auf Null, falls nicht schon in der Basis-Struktur geschehen */
+    margin: 0;
+    padding: 0;
+
+      /* Moderne System-Schriftart */
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+
+    /* Schrift für "Herkunft" */
+@font-face {
+  font-family: 'GreatVibes';
+  src: url('/assets/fonts/GreatVibes/GreatVibes-Regular.ttf') format('truetype');
+  font-style: normal;
+}
+
+
+
+     /* NEU: Hintergrundbild + transparentes Overlay */
+    background-image: 
+        /* 1. Transparentes Schwarz-Overlay (70% Deckkraft / 30% Transparenz) */
+        linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        
+        /* 2. Das tatsächliche Bild */
+        url('/assets/fotos/4.jpg');
+        
+    background-size: cover;
+    background-position: 80% 20%;
+
+    /* Bildposition links unten (Linker Rand 0%, Unterer Rand 100%) */
+    /*background-position: left top; /* Entspricht 0% 100% */
+    
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Parallax-Effekt beibehalten */
+    
+}
+
+   :root {
+                --primary: #6366f1;
+                --primary-dark: #4f46e5;
+                --blue_dark: #333399;
+                --blue_light: #0033cc;
+                --pol-blue: #0069b4;
+                --pol-lightblue: #9ccef3;
+                --pol-link-color: rgb(0,102,153);
+                --pol-link-hover-color: #00476b, rgb(0,71,107);
+                --fav-blue:  #2b3851;
+
+                --secondary: #8b5cf6;
+                --accent: #ec4899;
+                --dark: #0f172a;
+                --dark-light: #1e293b;
+                --gray: #64748b;
+                --light: #f1f5f9;
+                --white: #ffffff;
+                --pol-grey: #575756;
+                --dark-grey: #333333;
+                --fav-grey: #525b71;
+                --middle-grey: #3a3a3a;
+                --pol-btn-green: #198754;
+                --pol-green: rgb(171,177,35); 
+
+                --wine-red: #8B0000;
+                --wine-red-hover: #A52A2A; /* Etwas dunkler für Hover */
+                --wine-white: #F0E68C; /* Khaki/Helles Gold für Weißwein */
+                 --wine-white-hover: #FFFACD; /* Lemon Chiffon für Hover */
+
+    --bs-btn-bg: rgb(0,102,153);
+
+    --pol-favorite-color: #ffcc00;
+    --pol-yellow: #ffcc00;
+    --pol-red: #e0003c;
+    --pol-silver: #989898;
+    --pol-orange: rgb(229,100,37);
+    --pol-purple: rgb(206,15,105);
+    --pol-btn-yellow: #ffc107;
+    --pol-btn-red: #dc3545;
+
+    --pol-font-size-headline: 20px;
+    --bs-breadcrumb-divider: ">";
+
+    --pol-grey-hex: #bec5c9;
+    --pol-grey-rgb: rgb(190, 197, 201);
+
+    --pol-grey-30-hex: #d1d6d9;
+    --pol-grey-30-rgb: rgb(209, 214, 217);
+
+    --pol-grey-50-hex: #dee2e4;
+    --pol-grey-50-rgb: rgb(222, 226, 228);
+
+    --pol-grey-80-hex: #f2f3f4;
+    --pol-grey-80-rgb: rgb(242, 243, 244);
+            
+     /* Emoji-Variable */
+    --emoji-wine: '🍷';
+
+}
+
+/* Quiz Container Sections */
+.wine-quiz-section {
+    
+    width: 100%;
+    min-height: 90vh;
+    margin-left: calc(-50vw + 50%);
+    padding: 3rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+/* Content Container */
+.wine-quiz-container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 50px 50px;
+    align-items: center;  /* Vertikale Zentrierung */
+    justify-content: center; /* Horizontale Zentrierung */
+   background: rgba(255, 255, 255, 0.1); /* Leicht weißer Hintergrund für bessere Lesbarkeit */
+    backdrop-filter: blur(10px); /* Optional: Glasmorphismus-Effekt */    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.wine-quiz-container-small {
+    max-width: 700px;
+    width: 100%;
+}
+
+/* Typography */
+.wine-quiz-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    color: var(--wine-red);
+}
+
+.wine-quiz-subtitle {
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+    opacity: 0.95;
+    line-height: 1.6;
+    color: white;
+}
+
+.wine-quiz-step-indicator {
+    color: white;
+    opacity: 0.8;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+/* Progress Bar */
+.wine-quiz-progress {
+    background: rgba(255, 255, 255, 0.2);
+    height: 8px;
+    border-radius: 4px;
+    margin-bottom: 3rem;
+    overflow: hidden;
+}
+
+.wine-quiz-progress-bar {
+    background: white;
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+/* Card */
+.wine-quiz-card {
+  background: rgba(255, 255, 255, 0.1); /* Leicht weißer Hintergrund für bessere Lesbarkeit */
+    backdrop-filter: blur(10px); /* Optional: Glasmorphismus-Effekt */    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+
+    /* Zentrierung aller Child-Elemente */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem; /* Einheitlicher Abstand zwischen allen Elementen */
+}
+
+.wine-quiz-card-title {
+    font-size: 2rem;
+    color: var(--fav-blue);
+    margin-bottom: 1rem;
+    text-align: center;
+    /*Weißer Glow hinter der Schrift */
+    text-shadow: 0 0 6px rgba(255,255,255,0.8);
+
+
+}
+
+/* Buttons */
+.wine-quiz-btn {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    border-radius: 8px;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.wine-quiz-btn:hover {
+    background: var(--light);
+    color: var(--wine-red);
+    transform: translateY(-2px);
+}
+
+/* Quiz Options (Radio-style buttons) */
+.wine-quiz-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Allgemeine Button-Regeln */
+.wine-quiz-option {
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--blue_light);
+    background: transparent;
+    color: var(--blue_dark);
+    font-weight: 600;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    font-family: inherit;
+    width: 100%;
+}
+
+/* WEINROT */
+.red-wine-button {
+    background: #7a1f1f !important;
+    border-color: #7a1f1f !important;
+    color: white !important;
+}
+
+/* WEISSWEIN (goldgelb) */
+.white-wine-button {
+    background: #f7e7a1 !important;
+    border-color: #f7e7a1 !important;
+    color: #4a3f2f !important;
+}
+
+/* Hover-Anpassung */
+.red-wine-button:hover {
+    background: #5e1616 !important;
+}
+
+.white-wine-button:hover {
+    background: #e9d788 !important;
+}
+
+
+
+/* Result Box */
+.wine-quiz-result {
+     background: transparent;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.wine-quiz-result-title {
+    font-size: 2rem;
+    color: white;
+     text-shadow: 0 0 6px rgba(255,255,255,0.2);
+    margin-bottom: 0.5rem;
+   /* text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Schatten für bessere Lesbarkeit */
+}
+
+
+.wine-quiz-result-origin {
+    color: rgba(255, 255, 255, 0.9); /* Heller für bessere Lesbarkeit */
+     text-shadow: 0 0 6px rgba(255,255,255,0.5);
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    font-family: 'GreatVibes', cursive;
+    transform: skewX(-12deg);    /* stärkerer handschriftlicher Neigungswinkel */
+}
+
+
+.wine-quiz-result-description {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95); /* Heller für bessere Lesbarkeit */
+    line-height: 1.6;
+    margin-bottom: 3rem;
+}
+
+/* Action Button (for card) */
+.wine-quiz-action-btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border-radius: 8px;
+    border: 2px solid  var(--fav-blue);
+    background: transparent;
+    color: var(--fav-blue);
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-family: inherit;
+}
+
+.wine-quiz-action-btn:hover {
+    background: var(--blue_dark);
+    color: white;
+}
+
+/* Zurück-Button */
+.wine-quiz-back-btn {
+    display: block; /* Nimmt die volle Breite im Container ein, um Abstand zu gewährleisten */
+    text-align: left; /* Text linksbündig */
+    margin-top: 1rem; /* Abstand zur Frage-Card */
+    
+    /* Styling ähnlich einem Link */
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.wine-quiz-back-btn:hover {
+    color: white; /* Weiß beim Überfahren */
+}
+
+
+/* Für: Zusammenfassung der bisherigen Antworten */
+.wine-quiz-summary {
+    /* Flexbox verwenden, um alle Kind-Elemente in eine Reihe zu bringen */
+    display: flex;
+    /* Optional: Elemente vertikal zentrieren */
+    align-items: center; 
+    
+    text-align: left;
+    margin-bottom: 0.5rem;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    background: transparent; 
+    width: 100%; 
+}
+
+.summary-title {
+    margin-bottom: 0;
+    display: inline-block; 
+    /* Abstand zwischen Titel und erstem Item */
+    margin-right: 0.5rem; 
+    
+    color: white;
+    font-weight: 700;
+    font-size: 0.95rem;
+    opacity: 0.8;
+    /* Verhindert, dass der Titel umbricht */
+    white-space: nowrap; 
+}
+
+.summary-item {
+    /* display: inline-flex ist für die Items korrekt */
+    display: inline-flex;
+    background-color: transparent;
+    color: white;
+    padding: 0 0.5rem;
+    border-radius: 20px;
+    /* Reduziere den Margin, da sie bereits in Flex-Items sind */
+   margin-bottom: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap; 
+    /* Hinzufügen, falls nötig, um die Basislinie zu fixieren */
+    vertical-align: middle;
+}
+
+/* Styling für den Trennpfeil zwischen den Items */
+.summary-separator {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.5); /* Heller und subtiler Pfeil */
+    font-size: 1.6rem;
+    font-weight: 700;
+     margin-bottom: 0;
+    margin: 0 0.2rem; /* Abstand links und rechts vom Pfeil */
+    /* Sicherstellen, dass der Pfeil vertikal mit den Items ausgerichtet ist */
+    line-height: 1; 
+    /* Manuelle Korrektur der vertikalen Position */
+    transform: translateY(-0.05em); /* Verschiebt den Pfeil leicht nach oben */
+    vertical-align: middle; /* Hinzufügen, um mögliche Basislinien-Probleme zu umgehen */
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .wine-quiz-title {
+        font-size: 2.5rem;
+    }
+    
+    .wine-quiz-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .wine-quiz-card {
+        padding: 2rem;
+    }
+    
+    .wine-quiz-card-title {
+        font-size: 1.5rem;
+    }
+    
+    .wine-quiz-option {
+        padding: 1.2rem 1.5rem;
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% set show_header = false %}
+
+{% block title %}Wein-Berater - Finden Sie Ihren perfekten Wein{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="wine-quiz-section">
+    <div class="wine-quiz-container">
+        <h1 class="wine-quiz-title">Wein-Berater</h1>
+        <p class="wine-quiz-subtitle">
+            Lassen Sie sich in 3 einfachen Schritten zu Ihrem perfekten Wein beraten!
+        </p>
+        <a href="{{ path('question', {step: 1}) }}" class="wine-quiz-btn">
+            Quiz starten
+        </a>
+    </div>
+</section>
+{% endblock %}

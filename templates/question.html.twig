@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+{% set show_header = false %}
+
+{% block title %}Frage {{ step }} von {{ totalSteps }} - Wein-Quiz{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/wine_buttons.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="wine-quiz-section">
+    <div class="wine-quiz-container-small">
+        {# Fortschrittsbalken #}
+        <div class="wine-quiz-progress">
+            <div class="wine-quiz-progress-bar" style="width: {{ (step / totalSteps * 100) }}%;"></div>
+        </div>
+        
+        <p class="wine-quiz-step-indicator">
+            Schritt {{ step }} von {{ totalSteps }}
+        </p>
+
+{# Anzeige der bisherigen Antworten #}
+        {# Wir zeigen die Antworten der Schritte an, die VOR dem aktuellen Schritt liegen (step_num < step) #}
+        {% if answers|length > 0 and step > 1 %}
+            <div class="wine-quiz-summary">
+        <span class="summary-title">Ausgewählt:</span>               
+        
+         {% for key, answer_value in answers %}
+                    {% set step_num = key|split('_')|last %}
+                    
+                    {% if step_num < step %}
+                        <span class="summary-item">
+                            {{ answer_labels[answer_value] is defined ? answer_labels[answer_value] : answer_value }}
+                        </span>
+
+{# Pfeil hinzufügen, aber nur, wenn das nächste Item existiert #}
+                        {# Da die Twig-Loop-Variable 'loop.last' bei einem gefilterten Array schwierig ist,
+                           nutzen wir hier die 'step_num' im Vergleich zum aktuellen Schritt 'step' #}
+                        {# Wenn die aktuelle Schrittnummer (step_num) kleiner ist als der aktuelle Schritt (step) minus 1,
+                           wissen wir, dass ein weiterer Schritt folgt. #}
+                        {% if step_num < step - 1 %}
+                            <span class="summary-separator">→</span>
+                        {% endif %}
+
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {# Frage Card #}
+        <div class="wine-quiz-card">
+            <h2 class="wine-quiz-card-title">{{ question }}</h2>
+
+            <form method="post" class="wine-quiz-form">
+               {% for value, label in options %}
+    {# Generiere die CSS-Klasse automatisch aus dem Wert #}
+    {% set class_modifier = value ~ '-button' %}
+    <button 
+        type="submit" 
+        name="answer"
+        value="{{ value }}" 
+        class="wine-quiz-option {{ class_modifier }}"
+    >
+        {{ label }}
+    </button>
+{% endfor %}
+
+            </form>
+        </div>
+        {# "Zurück"-Button  (nur anzeigen, wenn step > 1) #}
+        {% if step > 1 %}
+            <a href="{{ path('question', {'step': step - 1}) }}" class="wine-quiz-back-btn">
+                ← Zurück
+            </a>
+        {% endif %}
+
+    </div>
+</section>
+{% endblock %}

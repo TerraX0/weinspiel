@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% set show_header = false %}
+
+{% set wineColors = {
+    'Chardonnay': '#DAA520',
+    'Riesling': '#ffc107',
+    'Merlot': '#800000',
+    'Cabernet': '#4B0082',
+    'Pinot Noir': '#A52A2A',
+    'Grauburgunder': '#C48A3C',
+    'Müller-Thurgau mit Restsüße': '#fcffa4',
+    'Dornfelder': ' #800000'
+} %}
+
+{% set wineColor = wineColors[recommendation.wine] ?? '#333' %}
+
+{% block title %}Ihre Wein-Empfehlung{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/wine-quiz.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="wine-quiz-section">
+    <div class="wine-quiz-container-small">
+        <div class="wine-quiz-card">
+            <h1 class="wine-quiz-card-title">Ihre Empfehlung:</h1>
+            
+            <div class="wine-quiz-result">
+                <h2 class="wine-quiz-result-title" style="color: {{ wineColor }};">
+                    {{ recommendation.wine }}
+                </h2>
+                {% if recommendation.origin is defined and recommendation.origin %}
+                    <p class="wine-quiz-result-origin">
+                        Herkunft: {{ recommendation.origin }}
+                    </p>
+                {% endif %}
+            </div>
+
+            <p class="wine-quiz-result-description">
+                {{ recommendation.description }}
+            </p>
+
+            <a href="{{ path('/') }}" class="wine-quiz-action-btn">
+                Neues Quiz starten
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

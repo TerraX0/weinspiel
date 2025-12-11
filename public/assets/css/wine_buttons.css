@@ -1,0 +1,81 @@
+/* wine_buttons.css */
+/* 🍷 Modifikator-Klasse: Roter Wein */
+.wine-quiz-option.red-wine-button {
+    border: 1px solid var(--wine-red) !important;
+    color: var(--wine-red) !important;
+}
+
+.wine-quiz-option.red-wine-button:hover {
+    background: var(--wine-red) !important;
+    color: white !important;
+}
+
+/* 🥂 Modifikator-Klasse: Button Weißer Wein */
+.wine-quiz-option.white-wine-button {
+    border: 1px solid var(--wine-white) !important;
+    color: var(--wine-white) !important;
+}
+
+.wine-quiz-option.white-wine-button:hover {
+    background: var(--wine-white) !important;
+    color: var(--dark-grey) !important;
+}
+
+/* ################################### */
+
+.red-wine-button {
+    background-color: #7b0f24; /* Weinrot */
+    color: #fff;
+}
+
+.white-wine-button {
+    background-color: #f5eee0; /* Weinweiß / creme */
+    color: #3a2c2c;
+}
+
+button.wine-quiz-option {
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+    font-size: 1.4rem;
+}
+
+
+/* Weinfarben */
+.red-button { border-color: #7b0f24; color: #7b0f24; }
+.red-button:hover { background: #7b0f24; color: white; }
+
+.white-button { border-color: #f5eee0; color: #f5eee0; }
+.white-button:hover { background: #f5eee0; color: #3a2c2c !important; }
+
+/* Geschmacksrichtungen */
+.halbtrocken-button { border-color: #F0A500; color: #F0A500; }
+.halbtrocken-button:hover { background: #F0A500; color: white; }
+
+.trocken-button { border-color: #007BFF; color: #007BFF; }
+.trocken-button:hover { background: var(--pol-blue) ; color: white; }
+
+/* Charakteristik */
+.mild-button { border-color: #FF69B4; color: #FF69B4; }
+.mild-button:hover { background: #FF69B4; color: white; }
+
+.würzig-button { border-color: #8B008B; color: #8B008B; }
+.würzig-button:hover { background: #8B008B; color: white; }
+
+.fruchtig-button { border-color:var(--wine-red-hover); color: var(--wine-red-hover); }
+.fruchtig-button:hover { background: var(--wine-red-hover); color: white; }
+
+.säurehaltig-button { border-color: var( --pol-btn-green); color: var( --pol-btn-green); }
+.säurehaltig-button:hover { background: var( --pol-btn-green); color: white; }
+
+.sanft-button { border-color: #fa79ba; color: #FF69B4; }
+.sanft-button:hover { background: #fd71b7; color: white; }
+
+.kraeftig-button { border-color: #610B0B; color: #610B0B; }
+.kraeftig-button:hover { background: #610B0B; color: white; }
+
+
