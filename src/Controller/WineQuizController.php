@@ -63,6 +63,19 @@ class WineQuizController extends AbstractController
             ]
         ]
     ];
+    // Die Map als Eigenschaft der Klasse definieren, um sie wiederzuverwenden
+private array $answerLabels = [
+    'white' => 'Weiß', // Wegen Ihrer Anforderung, hier 'Rot' statt 'Rotwein'
+    'red' => 'Rot',
+    'halbtrocken' => 'Halbtrocken',
+    'trocken' => 'Trocken',
+    'mild' => 'Mild',
+    'würzig' => 'Würzig',
+    'sanft' => 'Sanft',
+    'säurehaltig' => 'Säurehaltig',
+    'fruchtig' => 'Fruchtig',
+    'kraeftig' => 'Kräftig', // Hinzugefügt, falls benötigt
+];
 
     #[Route('/', name: '/')]
     public function start(SessionInterface $session): Response
@@ -105,7 +118,8 @@ class WineQuizController extends AbstractController
             'question' => $questionData['question'],
             'options' => $questionData['options'],
             'progress' => $this->calculateProgress($step),
-            'answers' => $answers // Die gespeicherten Antworten übergeben
+            'answers' => $answers, // Die gespeicherten Antworten übergeben
+            'answer_labels' => $this->answerLabels
         ]);
     }
 
@@ -120,7 +134,7 @@ class WineQuizController extends AbstractController
 
         $recommendation = $this->getWineRecommendation($answers);
 
-       // 👈 NEU: Die Labels für die Summary
+       // Die Labels für die Summary
         // Diese Map übersetzt die technischen Keys (z.B. 'white') in lesbare Namen (z.B. 'Weißwein')
         $answerLabels = [
             'white' => 'Weißwein',
@@ -137,84 +151,82 @@ class WineQuizController extends AbstractController
         return $this->render('result.html.twig', [
             'recommendation' => $recommendation,
             'answers' => $answers,
-            // 👈 NEU: Labels für das Template übergeben
+            // Labels für das Template übergeben
             'answer_labels' => $answerLabels, 
-            // 👈 NEU: TotalSteps übergeben, um die Summary-Logik im Template zu vereinfachen
+            // TotalSteps übergeben, um die Summary-Logik im Template zu vereinfachen
             'totalSteps' => 3 
         ]);
     }
 
-    private function getQuestionForStep(int $step, array $answers): ?array
-    {
-        switch ($step) {
-            case 1:
-                return [
-                    'question' => 'Welche Weinfarbe bevorzugen Sie?',
-                    'options' => [
-                        'white' => 'Weißwein',
-                        'red' => 'Rotwein'
-                    ]
-                ];
+  private function getQuestionForStep(int $step, array $answers): ?array
+{
+    switch ($step) {
+        case 1:
+            return [
+                'question' => 'Welche Weinfarbe bevorzugen Sie?',
+                'options' => [
+                    'white' => 'Weißwein',
+                    'red' => 'Rotwein'
+                ]
+            ];
+        
+        case 2:
+            return [
+                'question' => 'Welche Geschmacksrichtung bevorzugen Sie?',
+                'options' => [
+                    'halbtrocken' => 'Halbtrocken',
+                    'trocken' => 'Trocken'
+                ]
+            ];
+        
+        case 3:
+            $color = $answers['step_1'] ?? 'white';
+            $dryness = $answers['step_2'] ?? 'halbtrocken';
             
-            case 2:
-                return [
-                    'question' => 'Welche Geschmacksrichtung bevorzugen Sie?',
-                    'options' => [
-                        'halbtrocken' => 'Halbtrocken',
-                        'trocken' => 'Trocken'
-                    ]
-                ];
-            
-            case 3:
-               $color = $answers['step_1'] ?? 'white';
-                $dryness = $answers['step_2'] ?? 'halbtrocken';
-                $characteristic = $answers['step_3'] ?? 'mild';
-
-                
-                if ($color === 'white') {
-                    if ($dryness === 'halbtrocken') {
-                        return [
-                            'question' => 'Welche Geschmacksnote bevorzugen Sie?',
-                            'options' => [
-                                'mild' => 'Mild',
-                                'würzig' => 'Würzig'
-                            ]
-                        ];
-                    } else {
-                        return [
-                            'question' => 'Welche Charakteristik bevorzugen Sie?',
-                            'options' => [
-                                'säurehaltig' => 'Säurehaltig',
-                                'fruchtig' => 'Fruchtig'
-                            ]
-                        ];
-                    }
-                } else { // rot
-                    if ($dryness === 'halbtrocken') {
-                        return [
-                            'question' => 'Welche Rebsorte interessiert Sie?',
-                            'options' => [
-                                'sanft' => 'Sanft',
-                                'kraeftig' => 'Kräftig'
-                            ]
-                        ];
-                    } else {
-                        return [
-                            'question' => 'Welchen Charakter bevorzugen Sie?',
-                            'options' => [
-                                'würzig' => 'Würzig',
-                                'fruchtig' => 'Fruchtig'
-                            ]
-                        ];
-                    }
+            if ($color === 'white') {
+                if ($dryness === 'halbtrocken') {
+                    return [
+                        'question' => 'Welche Geschmacksnote bevorzugen Sie?',
+                        'options' => [
+                            'mild' => 'Mild',
+                            'würzig' => 'Würzig'
+                        ]
+                    ];
+                } else {
+                    return [
+                        'question' => 'Welche Charakteristik bevorzugen Sie?',
+                        'options' => [
+                            'säurehaltig' => 'Säurehaltig',
+                            'fruchtig' => 'Fruchtig'
+                        ]
+                    ];
                 }
-            
-            default:
-                return null;
-        }
+            } else { // rot
+                if ($dryness === 'halbtrocken') {
+                    return [
+                        'question' => 'Welche Rebsorte interessiert Sie?',
+                        'options' => [
+                            'sanft' => 'Sanft',
+                            'kraeftig' => 'Kräftig'
+                        ]
+                    ];
+                } else {
+                    return [
+                        'question' => 'Welchen Charakter bevorzugen Sie?',
+                        'options' => [
+                            'würzig' => 'Würzig',
+                            'fruchtig' => 'Fruchtig'
+                        ]
+                    ];
+                }
+            }
+        
+        default:
+            return null;
     }
+}
 
-  private function getWineRecommendation(array $answers): array
+    private function getWineRecommendation(array $answers): array
 {
     $color = $answers['step_1'] ?? 'white';
     $dryness = $answers['step_2'] ?? 'halbtrocken';

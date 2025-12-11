@@ -32,7 +32,8 @@
                     
                     {% if step_num < step %}
                         <span class="summary-item">
-                            {{ answer_labels[answer_value] is defined ? answer_labels[answer_value] : answer_value }}
+                    {% set readable_label = answer_labels[answer_value] is defined ? answer_labels[answer_value] : answer_value %}
+                    {{ readable_label }}
                         </span>
 
 {# Pfeil hinzufügen, aber nur, wenn das nächste Item existiert #}
