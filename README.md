@@ -1,5 +1,5 @@
 # Interactive Wine Game
-An interactive, web-based game built to practice core application logic, state management, and routing.
+A small interactive, web-based game built to practice core application logic, state management, and routing.
 
 **🌐 Live Demo:** You can play the game live on my website: [alinakoellner.de](https://alinakoellner.de)
 
