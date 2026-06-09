@@ -44,9 +44,9 @@ php bin/console make:controller
 php bin/console doctrine:migrations:migrate
 # Alternative with Symfony CLI: symfony console doctrine:migrations:migrate
 ```
-
+---
 🇩🇪 **## German Version**
-Im Terminal, beim Erstellen jedes neuen PROJEKTS (nicht Branch):
+<br>Im Terminal, beim Erstellen jedes neuen PROJEKTS (nicht Branch):
 
 ```bash
 cd Ordner des Projekts
