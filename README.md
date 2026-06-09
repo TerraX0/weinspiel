@@ -1,7 +1,7 @@
 # Interactive Wine Game
 A small interactive, web-based game built to practice core application logic, state management, and routing.
 
-**🌐 Live Demo:** You can play the game live on my website: [alinakoellner.de](https://alinakoellner.de)
+**🌐 Live Demo:** You can play the game live on my website under the "About Me" section.: [alinakoellner.de](https://alinakoellner.de)
 
 ### What it does:
 This project showcases my ability to implement core programming logic, handle user inputs, and manage dynamic interactive states in the browser. It serves as a practical exercise to deepen my understanding of controller logic and frontend-backend interaction.
